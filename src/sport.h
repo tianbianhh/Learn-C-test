@@ -56,3 +56,4 @@ int  findEvent(int s, int p, Sex sex);
 void delEvent(int idx);
 
 #endif //C_TEST_SPORT_H
+

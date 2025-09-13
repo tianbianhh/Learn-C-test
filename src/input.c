@@ -51,3 +51,4 @@ void clearInputBuffer(void) {
     int c;
     while ((c = getchar()) != '\n' && c != EOF) { } // 清空缓冲区直到换行符或文件结束符
 }
+

@@ -45,3 +45,4 @@ void rankFemale(void) {
     for (int i = 0; i < 28 && buf[i].key; i++)
         printf("%2d. %-30s %d 分\n", i + 1, department[buf[i].id], buf[i].key);
 }
+
