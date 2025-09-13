@@ -12,3 +12,4 @@ add_executable(C_test
         src/rank.c
         src/fileio.c
         src/utils.c)
+
