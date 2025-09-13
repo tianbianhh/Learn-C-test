@@ -4,32 +4,29 @@ void inputScore(void) {
     int s, p, sc, sex;
     int exitFlag = 0; // 用于标识是否退出录入
 
-
     do {
         printf("\n请输入：学院号 项目号 成绩 性别(0女1男)，或输入-1退出录入：");
         if (scanf("%d", &s) != 1) {
             puts("格式错误！请重新输入。");
-            exitFlag = 1;
-            break;
+            clearInputBuffer(); // 清空输入缓冲区
+            continue;
         }
         if (s == -1) {
             break; // 用户选择退出
         }
         if (scanf("%d%d%d", &p, &sc, &sex) != 3) {
             puts("格式错误！请重新输入。");
-            exitFlag = 1;
-            break;
+            clearInputBuffer(); // 清空输入缓冲区
+            continue;
         }
         if (s < 0 || s >= 28 || p < 0 || p >= projectCnt) {
             puts("编号越界！请重新输入。");
-            exitFlag = 1;
-            break;
+            continue;
         }
 
         if (findEvent(s, p, sex) != -1) {
             puts("该成绩已存在，请先修改！");
-            exitFlag = 1;
-            break;
+            continue;
         }
 
         events[eventCnt].sno  = s;
@@ -44,10 +41,13 @@ void inputScore(void) {
 
         printf("录入成功！%s %s %s 得分 %d\n",
                department[s], project[p], sex?"男":"女", sc);
-        exitFlag = 0; // 重置退出标志
-    } while (exitFlag == 0);
+    } while (1);
 
-    if (!exitFlag) {
-        puts("已退出成绩录入。");
-    }
+    puts("已退出成绩录入。");
+}
+
+// 新增函数：清空输入缓冲区
+void clearInputBuffer(void) {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF) { } // 清空缓冲区直到换行符或文件结束符
 }

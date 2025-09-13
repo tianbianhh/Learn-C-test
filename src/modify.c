@@ -4,18 +4,6 @@ void modifyScore(void) {
     int s, p, sex, newScore;
     int exitFlag = 0; // 用于标识是否退出修改
 
-    // 显示学院编号和名称
-    printf("\n学院编号对应表：\n");
-    for (int i = 0; i < 28; i++) {
-        printf("%d. %s\n", i, department[i]);
-    }
-
-    // 显示项目编号和名称
-    printf("\n项目编号对应表：\n");
-    for (int i = 0; i < projectCnt; i++) {
-        printf("%d. %s\n", i, project[i]);
-    }
-
     do {
         printf("\n请输入：学院号 项目号 性别(0女1男) 新成绩，或输入-1退出修改：");
         if (scanf("%d", &s) != 1) {
