@@ -1,16 +1,10 @@
-//
-// Created by 天边 on 2025/9/13.
-//
 #include "sport.h"
-#include <windows.h>
-/* 定义全局变量 */
-Event events[MAXE] = {0};      // 成绩池，初始清零
-int   eventCnt       = 0;      // 当前已录入条数
+
+Event events[MAXE] = {0};      // 成绩池数组
+int   eventCnt       = 0;      // 当前已存条数
 int   totalScore[MAXS] = {0};  // 各学院总分
 int   maleScore[MAXS]  = {0};  // 各学院男团分
 int   femaleScore[MAXS]= {0};  // 各学院女团分
-
-/* 29 个学院名称（按你给出顺序） */
 const char *department[MAXS] = {
     "人文学院", "国际商学院", "法学院", "马克思主义学院",
     "体育学院", "外国语学院国际传播与艺术学院", "数学与统计学院",
@@ -22,8 +16,6 @@ const char *department[MAXS] = {
     "热带农林学院", "药学院", "国际旅游与公共管理学院",
     "纪检监察学院", "预留A", "预留B", "预留C"
 };
-
-/* 10 个田径项目 */
 const char *project[MAXP] = {
     "50米", "100米", "200米", "400米", "1500米",
     "跳高", "跳远", "标枪", "铅球", "铁饼"
@@ -42,21 +34,22 @@ int main(void) {
         puts("\n========== 主菜单 ==========");
         puts("1.录入成绩 2.修改成绩 3.院系汇总 4.项目明细");
         puts("5.总分排名 6.男团排名 7.女团排名 8.导出排名");
-        puts("0.退出");
+        puts("9.显示学院和项目对应表 0.退出");
         printf("请选择：");
         if (scanf("%d", &choice) != 1) break;
 
         switch (choice) {
-            case 1: inputScore(); break;
-            case 2: modifyScore(); break;
-            case 3: queryByDep();  break;
-            case 4: queryByProj(); break;
-            case 5: rankTotal();   break;
-            case 6: rankMale();    break;
-            case 7: rankFemale();  break;
-            case 8: exportRank();  break;
-            case 0: puts("感谢使用！"); break;
-            default: puts("输入无效！");
+        case 1: inputScore(); break;
+        case 2: modifyScore(); break;
+        case 3: queryByDep();  break;
+        case 4: queryByProj(); break;
+        case 5: rankTotal();   break;
+        case 6: rankMale();    break;
+        case 7: rankFemale();  break;
+        case 8: exportRank();  break;
+        case 9: displayTables(); break; // 显示对应表
+        case 0: puts("感谢使用！"); break;
+        default: puts("输入无效！");
         }
     } while (choice != 0);
 
@@ -64,3 +57,21 @@ int main(void) {
     return 0;
 }
 
+
+void displayTables() {
+    // 显示学院编号和名称
+    printf("\n学院编号对应表：\n");
+    for (int i = 0; i < 28; i++) {
+        printf("%d. %s\n", i, department[i]);
+    }
+
+    // 显示项目编号和名称
+    printf("\n项目编号对应表：\n");
+    for (int i = 0; i < projectCnt; i++) {
+        printf("%d. %s\n", i, project[i]);
+    }
+
+    printf("\n按任意键继续...");
+    getchar(); // 等待用户按键
+    getchar(); // 清除输入缓冲区
+}

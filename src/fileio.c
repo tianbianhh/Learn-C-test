@@ -1,6 +1,3 @@
-//
-// Created by 天边 on 2025/9/13.
-//
 #include "sport.h"
 
 void loadData(void) {
@@ -12,7 +9,7 @@ void loadData(void) {
     /* 重建统计 */
     for (int i = 0; i < eventCnt; i++) {
         int s = events[i].sno;
-        int sc= events[i].score;
+        int sc = events[i].score;
         totalScore[s] += sc;
         if (events[i].sex == MALE) maleScore[s]   += sc;
         else                       femaleScore[s] += sc;
@@ -29,14 +26,30 @@ void saveData(void) {
 }
 
 void exportRank(void) {
-    FILE *fp = fopen("rank.txt", "w");
-    if (!fp) return;
-    fprintf(fp, "海南大学运动会成绩排名\n");
-    fprintf(fp, "=======================\n");
-    rankCore(totalScore);
-    for (int i = 0; i < 28 && buf[i].key; i++)
-        fprintf(fp, "%2d. %-30s %d 分\n", i + 1, department[buf[i].id], buf[i].key);
-    fclose(fp);
-    puts("排名已导出到 rank.txt");
-}
+    int exitFlag = 0; // 用于标识是否退出导出
 
+    do {
+        FILE *fp = fopen("rank.txt", "w");
+        if (!fp) {
+            puts("文件创建失败！");
+            exitFlag = 1;
+            break;
+        }
+        fprintf(fp, "海南大学运动会成绩排名\n");
+        fprintf(fp, "=======================\n");
+        rankCore(totalScore);
+        for (int i = 0; i < 28 && buf[i].key; i++)
+            fprintf(fp, "%2d. %-30s %d 分\n", i + 1, department[buf[i].id], buf[i].key);
+        fclose(fp);
+        puts("排名已导出到 rank.txt");
+
+        printf("\n按任意键继续，或输入-1退出导出：");
+        if (scanf("%d", &exitFlag) != 1) {
+            exitFlag = 1;
+        }
+    } while (exitFlag != -1);
+
+    if (exitFlag != -1) {
+        puts("已退出排名导出。");
+    }
+}

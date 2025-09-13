@@ -45,6 +45,7 @@ void rankFemale(void);
 void loadData(void);
 void saveData(void);
 void exportRank(void);
+void displayTables(void);
 
 /* 供外部使用的 rank 符号 */
 extern Node buf[MAXS];
