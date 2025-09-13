@@ -30,3 +30,4 @@ void inputScore(void) {
     printf("录入成功！%s %s %s 得分 %d\n",
            department[s], project[p], sex?"男":"女", sc);
 }
+

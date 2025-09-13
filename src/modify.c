@@ -26,3 +26,4 @@ void modifyScore(void) {
 
     printf("修改成功！新成绩 %d 分\n", newScore);
 }
+

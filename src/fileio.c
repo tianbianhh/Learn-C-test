@@ -39,3 +39,4 @@ void exportRank(void) {
     fclose(fp);
     puts("排名已导出到 rank.txt");
 }
+
