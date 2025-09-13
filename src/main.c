@@ -75,4 +75,3 @@ void displayTables() {
     getchar(); // 等待用户按键
     getchar(); // 清除输入缓冲区
 }
-
