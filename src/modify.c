@@ -50,3 +50,4 @@ void modifyScore(void) {
         puts("已退出成绩修改。");
     }
 }
+

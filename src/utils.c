@@ -17,3 +17,4 @@ void delEvent(int idx) {
     events[idx] = events[eventCnt - 1];
     eventCnt--;
 }
+
