@@ -2,7 +2,7 @@
 // Created by 天边 on 2025/9/13.
 //
 #include "sport.h"
-
+#include <windows.h>
 /* 定义全局变量 */
 Event events[MAXE] = {0};      // 成绩池，初始清零
 int   eventCnt       = 0;      // 当前已录入条数
@@ -31,7 +31,6 @@ const char *project[MAXP] = {
 int projectCnt = 10; // 实际项目数
 
 int main(void) {
-    setlocale(LC_ALL, ""); // 让终端正确显示中文
     puts("==================================================");
     puts("||  海南大学运动会成绩数据库 —— C11 版      ||");
     puts("==================================================");
